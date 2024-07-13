@@ -1,0 +1,41 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Application</title>
+</head>
+<body>
+    <h1>Consultation Application</h1>
+
+    <h2>Enter New Consultation Request</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.student_name.label }}<br>
+        {{ form.student_name(size=32) }}</p>
+        
+        <p>{{ form.contact_number.label }}<br>
+        {{ form.contact_number(size=32) }}</p>
+        
+        <p>{{ form.consultation_topic.label }}<br>
+        {{ form.consultation_topic(size=64) }}</p>
+        
+        <p>{{ form.consultation_details.label }}<br>
+        {{ form.consultation_details(cols=64, rows=8) }}</p>
+        
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <hr>
+
+    <h2>Consultation Requests</h2>
+    <ul>
+        {% for consultation in consultations %}
+        <li>{{ consultation.student_name }} - {{ consultation.consultation_topic }} ({{ consultation.consultation_date.strftime('%Y-%m-%d %H:%M:%S') }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
